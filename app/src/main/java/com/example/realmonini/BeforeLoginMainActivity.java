@@ -1,5 +1,6 @@
 package com.example.realmonini;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -13,7 +14,7 @@ public class BeforeLoginMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_before_login_main);
 
         findViewById(R.id.btn_signup).setOnClickListener(v -> {
-            // 나중에 회원가입 화면
+            startActivity(new Intent(this, LoginActivity.class));
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_layout), (v, insets) -> {

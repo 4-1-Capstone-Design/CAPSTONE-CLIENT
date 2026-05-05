@@ -17,4 +17,17 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.btn_journal).setOnClickListener(v -> {
+            //저널 작성 화면으로 이동
+        });
+
+        view.findViewById(R.id.ic_mypage).setOnClickListener(v -> {
+            //마이페이지로 이동
+        });
+    }
 }
