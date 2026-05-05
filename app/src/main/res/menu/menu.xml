@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_journal"
+        android:icon="@drawable/ic_journal_selector"
+        android:enabled="true"
+        android:title="모닝저널"/>
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/ic_home_selector"
+        android:enabled="true"
+        android:checked="true"
+        android:title="홈"/>
+
+    <item
+        android:id="@+id/bottom_chart"
+        android:icon="@drawable/ic_chart_selector"
+        android:enabled="true"
+        android:title="차트"/>
+
+</menu>
