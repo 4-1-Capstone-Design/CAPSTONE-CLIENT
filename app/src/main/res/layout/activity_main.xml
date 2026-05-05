@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_frame"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:src="#F5F0EB"
+        android:scaleType="fitXY"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_bottom"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingTop="20dp"
-        android:background="@drawable/bgc_bottombar"
-        app:itemIconSize="30dp"
-        app:labelVisibilityMode="unlabeled"
-        app:itemRippleColor="@android:color/transparent"
-        app:itemActiveIndicatorStyle="@null"
-        app:menu="@menu/menu"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <FrameLayout
+            android:id="@+id/main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingTop="20dp"
+            android:background="@drawable/bgc_bottombar"
+            app:itemIconSize="30dp"
+            app:labelVisibilityMode="unlabeled"
+            app:itemRippleColor="@android:color/transparent"
+            app:itemActiveIndicatorStyle="@null"
+            app:menu="@menu/menu"/>
+
+    </LinearLayout>
+</FrameLayout>
