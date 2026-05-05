@@ -23,7 +23,8 @@
 
         <activity android:name=".MainActivity"/>
         <activity android:name=".BeforeLoginMainActivity"/>
-
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".JoinActivity"/>
     </application>
 
 </manifest>
