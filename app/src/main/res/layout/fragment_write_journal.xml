@@ -13,7 +13,6 @@
         android:paddingTop="60dp"
         android:paddingBottom="20dp">
 
-        <!-- 로고 -->
         <ImageView
             android:id="@+id/logo"
             android:layout_width="120dp"
@@ -24,7 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- 날짜 + 제목 -->
         <LinearLayout
             android:id="@+id/title_area"
             android:layout_width="match_parent"
@@ -54,7 +52,6 @@
                 android:textColor="#3D3D3D"/>
         </LinearLayout>
 
-        <!-- 질문 1 -->
         <TextView
             android:id="@+id/q1"
             android:layout_width="match_parent"
@@ -86,7 +83,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- 질문 2 -->
         <TextView
             android:id="@+id/q2"
             android:layout_width="match_parent"
@@ -118,7 +114,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- 질문 3 -->
         <TextView
             android:id="@+id/q3"
             android:layout_width="match_parent"
@@ -150,7 +145,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- 질문 4 -->
         <TextView
             android:id="@+id/q4"
             android:layout_width="match_parent"
@@ -182,7 +176,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Done 버튼 -->
         <TextView
             android:id="@+id/btn_done"
             android:layout_width="100dp"
