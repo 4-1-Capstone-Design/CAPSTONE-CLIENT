@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="60dp"
+        android:paddingBottom="40dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:src="@drawable/monini_logo"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/reply_box"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/reply_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tv_reply_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성장욕구 , 의욕 , 내면의 단단함"
+                android:fontFamily="@font/gowun_batang"
+                android:textSize="15sp"
+                android:textColor="#3D3D3D"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_reply_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘은 의욕이 살아 있고\n더 성장하고 싶다는 마음이 선명하게 느껴지네요."
+                android:fontFamily="@font/gowun_batang"
+                android:textSize="13sp"
+                android:textColor="#3D3D3D"
+                android:gravity="center"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/tv_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From Monini"
+                android:fontFamily="@font/gowun_batang"
+                android:textStyle="italic"
+                android:textSize="18sp"
+                android:textColor="#3D3D3D"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_done"
+            android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:text="Done"
+            android:fontFamily="@font/michroma_regular"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:background="@drawable/btn_login"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/reply_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
