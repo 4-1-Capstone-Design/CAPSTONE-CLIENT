@@ -107,9 +107,9 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_clover_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="열혈 모닝저널러 !"
             android:fontFamily="@font/gowun_batang"
             android:textSize="15sp"
             android:textColor="#3D3D3D"/>

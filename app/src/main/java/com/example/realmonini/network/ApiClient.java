@@ -9,7 +9,7 @@ public class ApiClient {
     private static final String BASE_URL = "http://monini.site:8080/";
     private static Retrofit retrofit;
 
-    public static AuthService getAuthService() {
+    private static Retrofit getRetrofit() {
         if (retrofit == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -24,6 +24,14 @@ public class ApiClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit.create(AuthService.class);
+        return retrofit;
+    }
+
+    public static AuthService getAuthService() {
+        return getRetrofit().create(AuthService.class);
+    }
+
+    public static UserService getUserService() {
+        return getRetrofit().create(UserService.class);
     }
 }
