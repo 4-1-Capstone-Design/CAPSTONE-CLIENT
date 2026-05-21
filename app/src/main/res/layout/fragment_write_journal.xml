@@ -43,13 +43,18 @@
                 android:textSize="14sp"
                 android:textColor="#3D3D3D"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="모닝저널 제목"
+                android:hint="제목을 입력하세요"
                 android:fontFamily="@font/gowun_batang"
                 android:textSize="14sp"
-                android:textColor="#3D3D3D"/>
+                android:textColor="#3D3D3D"
+                android:textColorHint="#BBBBBB"
+                android:background="@null"
+                android:gravity="center"
+                android:maxLines="1"/>
         </LinearLayout>
 
         <TextView
