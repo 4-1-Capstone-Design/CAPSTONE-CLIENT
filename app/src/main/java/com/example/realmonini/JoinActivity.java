@@ -10,6 +10,7 @@ import com.example.realmonini.network.ApiClient;
 import com.example.realmonini.network.dto.ApiResponse;
 import com.example.realmonini.network.dto.SignupData;
 import com.example.realmonini.network.dto.SignupRequest;
+import com.example.realmonini.util.ApiErrorUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +56,7 @@ public class JoinActivity extends AppCompatActivity {
                             finish();
                         } else {
                             Toast.makeText(JoinActivity.this,
-                                    "회원가입 실패: 이미 사용 중인 이메일일 수 있습니다.", Toast.LENGTH_SHORT).show();
+                                    ApiErrorUtil.parseError(response), Toast.LENGTH_SHORT).show();
                         }
                     }
 
