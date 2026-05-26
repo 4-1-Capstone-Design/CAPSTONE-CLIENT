@@ -6,23 +6,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.realmonini.network.dto.JournalItem;
+
 import java.util.List;
 
 public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(JournalItem item);
     }
 
-    private List<String> dateList;
-    private List<String> titleList;
-    private List<String> keywordList;
-    private OnItemClickListener listener;
+    private final List<JournalItem> items;
+    private final OnItemClickListener listener;
 
-    public JournalAdapter(List<String> dateList, List<String> titleList, List<String> keywordList, OnItemClickListener listener) {
-        this.dateList = dateList;
-        this.titleList = titleList;
-        this.keywordList = keywordList;
+    public JournalAdapter(List<JournalItem> items, OnItemClickListener listener) {
+        this.items = items;
         this.listener = listener;
     }
 
@@ -36,15 +35,16 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvDate.setText(dateList.get(position));
-        holder.tvTitle.setText(titleList.get(position));
-        holder.tvKeyword.setText(keywordList.get(position));
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(position));
+        JournalItem item = items.get(position);
+        holder.tvDate.setText(item.getJournalDate());
+        holder.tvTitle.setText(item.getTitle() != null ? item.getTitle() : "");
+        holder.tvKeyword.setText(item.getContent() != null ? item.getContent() : "");
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 
     @Override
     public int getItemCount() {
-        return dateList.size();
+        return items.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
