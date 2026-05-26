@@ -42,4 +42,5 @@ dependencies {
     implementation libs.retrofit
     implementation libs.retrofit.gson
     implementation libs.okhttp.logging
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

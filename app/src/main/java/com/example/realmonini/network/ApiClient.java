@@ -47,4 +47,8 @@ public class ApiClient {
     public static JournalService getJournalService() {
         return getRetrofit().create(JournalService.class);
     }
+
+    public static StatsService getStatsService() {
+        return getRetrofit().create(StatsService.class);
+    }
 }

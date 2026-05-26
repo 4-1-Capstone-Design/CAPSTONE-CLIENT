@@ -7,4 +7,12 @@
 
     <style name="Theme.RealMonini.Splash" parent="Theme.RealMonini">
     </style>
+
+    <style name="DatePickerTheme" parent="ThemeOverlay.Material3.Dialog">
+        <item name="colorPrimary">#FF9D92</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#FF9D92</item>
+        <item name="colorOnSecondaryContainer">#FFFFFF</item>
+        <item name="colorSurface">#FAFAF8</item>
+    </style>
 </resources>
