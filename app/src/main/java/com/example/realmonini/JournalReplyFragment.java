@@ -27,13 +27,13 @@ public class JournalReplyFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             String keywords = args.getString("keywords", "");
-            String reply = args.getString("reply", "");
+            String reply    = args.getString("reply", "");
 
-            TextView tvTitle = view.findViewById(R.id.tv_reply_title);
+            TextView tvTitle   = view.findViewById(R.id.tv_reply_title);
             TextView tvContent = view.findViewById(R.id.tv_reply_content);
 
             if (!keywords.isEmpty()) tvTitle.setText(keywords);
-            if (!reply.isEmpty()) tvContent.setText(reply);
+            if (!reply.isEmpty())    tvContent.setText(reply);
         }
 
         view.findViewById(R.id.btn_done).setOnClickListener(v ->

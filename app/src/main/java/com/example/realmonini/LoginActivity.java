@@ -15,7 +15,7 @@ import com.example.realmonini.util.TokenManager;
 
 import android.util.Log;
 
-import java.io.IOException;
+import com.example.realmonini.util.ApiErrorUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,17 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         } else {
-                            String errorBody = "";
-                            try {
-                                if (response.errorBody() != null) {
-                                    errorBody = response.errorBody().string();
-                                }
-                            } catch (IOException ignored) {}
-                            Log.e("LoginActivity", "HTTP " + response.code() + " errorBody=" + errorBody);
-                            String msg = response.code() == 500
-                                    ? "서버 오류가 발생했습니다. (500)"
-                                    : "로그인 실패: 이메일 또는 비밀번호를 확인해주세요.";
-                            Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,
+                                    ApiErrorUtil.parseError(response), Toast.LENGTH_SHORT).show();
                         }
                     }
 

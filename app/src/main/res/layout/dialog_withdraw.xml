@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFF5"
+    android:padding="28dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원탈퇴"
+        android:fontFamily="@font/michroma_regular"
+        android:textSize="16sp"
+        android:textColor="#3D3D3D"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="탈퇴하면 모든 데이터가 삭제됩니다.\n비밀번호를 입력해 주세요."
+        android:fontFamily="@font/gowun_batang"
+        android:textSize="13sp"
+        android:textColor="#5D5D5D"
+        android:layout_marginBottom="20dp"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Password"
+        android:fontFamily="@font/michroma_regular"
+        android:textSize="13sp"
+        android:textColor="#3D3D3D"
+        android:textColorHint="#AAAAAA"
+        android:background="@drawable/et_border"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:inputType="textPassword"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:text="취소"
+            android:fontFamily="@font/michroma_regular"
+            android:textSize="13sp"
+            android:textColor="#FF9D92"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:text="탈퇴"
+            android:fontFamily="@font/michroma_regular"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_login"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
