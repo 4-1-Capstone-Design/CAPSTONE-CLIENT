@@ -1,12 +1,15 @@
 package com.example.realmonini;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,7 @@ import com.example.realmonini.network.ApiClient;
 import com.example.realmonini.network.dto.ApiResponse;
 import com.example.realmonini.network.dto.LogoutRequest;
 import com.example.realmonini.network.dto.UserData;
+import com.example.realmonini.network.dto.WithdrawRequest;
 import com.example.realmonini.util.TokenManager;
 
 import retrofit2.Call;
@@ -51,9 +55,7 @@ public class MyPageFragment extends Fragment {
         loadMyPage();
 
         view.findViewById(R.id.btn_logout).setOnClickListener(v -> logout());
-        view.findViewById(R.id.tv_withdraw).setOnClickListener(v -> {
-            // 나중에 회원탈퇴 처리
-        });
+        view.findViewById(R.id.tv_withdraw).setOnClickListener(v -> showWithdrawDialog());
     }
 
     private void loadMyPage() {
@@ -106,6 +108,62 @@ public class MyPageFragment extends Fragment {
                     public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
                         tokenManager.clear();
                         navigateToBeforeLogin();
+                    }
+                });
+    }
+
+    private void showWithdrawDialog() {
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_withdraw, null);
+        EditText etPassword = dialogView.findViewById(R.id.et_password);
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        dialogView.findViewById(R.id.btn_cancel).setOnClickListener(v -> dialog.dismiss());
+        dialogView.findViewById(R.id.btn_confirm).setOnClickListener(v -> {
+            String password = etPassword.getText().toString().trim();
+            if (password.isEmpty()) {
+                Toast.makeText(requireContext(), "비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            withdraw(password, dialog);
+        });
+
+        dialog.show();
+    }
+
+    private void withdraw(String password, AlertDialog dialog) {
+        String token = "Bearer " + tokenManager.getAccessToken();
+
+        ApiClient.getUserService()
+                .withdraw(token, new WithdrawRequest(password))
+                .enqueue(new Callback<ApiResponse<Object>>() {
+                    @Override
+                    public void onResponse(Call<ApiResponse<Object>> call,
+                                           Response<ApiResponse<Object>> response) {
+                        if (response.isSuccessful()) {
+                            dialog.dismiss();
+                            tokenManager.clear();
+                            navigateToBeforeLogin();
+                        } else {
+                            String msg = com.example.realmonini.util.ApiErrorUtil.parseError(response);
+                            if (isAdded()) {
+                                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApiResponse<Object>> call, Throwable t) {
+                        Log.e("WITHDRAW", "onFailure", t);
+                        if (isAdded()) {
+                            Toast.makeText(requireContext(), "네트워크 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
