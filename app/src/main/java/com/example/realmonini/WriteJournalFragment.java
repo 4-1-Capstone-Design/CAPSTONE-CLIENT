@@ -19,6 +19,7 @@ import com.example.realmonini.network.dto.QuestionItem;
 import com.example.realmonini.network.dto.SubmitData;
 import com.example.realmonini.network.dto.SubmitRequest;
 import com.example.realmonini.network.dto.TodayQuestionsData;
+import com.example.realmonini.util.ApiErrorUtil;
 import com.example.realmonini.util.TokenManager;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class WriteJournalFragment extends Fragment {
     private EditText[] etViews;
     private long[] questionIds;
     private int validCount = 0;
+    private boolean submitted = false;
 
     @Nullable
     @Override
@@ -66,6 +68,8 @@ public class WriteJournalFragment extends Fragment {
         loadTodayQuestions(view);
 
         view.findViewById(R.id.btn_done).setOnClickListener(v -> {
+            if (submitted) return;
+            submitted = true;
             v.setEnabled(false);
             submitJournal(view);
         });
@@ -152,13 +156,16 @@ public class WriteJournalFragment extends Fragment {
                                     .commit();
                         } else {
                             Toast.makeText(requireContext(),
-                                    "저널 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                                    ApiErrorUtil.parseError(response), Toast.LENGTH_SHORT).show();
+                            submitted = false;
+                            view.findViewById(R.id.btn_done).setEnabled(true);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ApiResponse<SubmitData>> call, Throwable t) {
                         if (isAdded()) {
+                            submitted = false;
                             view.findViewById(R.id.btn_done).setEnabled(true);
                             Toast.makeText(requireContext(),
                                     "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();

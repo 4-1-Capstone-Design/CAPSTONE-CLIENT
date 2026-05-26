@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.example.realmonini.network.ApiClient;
 import com.example.realmonini.network.dto.ApiResponse;
 import com.example.realmonini.network.dto.KeywordItem;
 import com.example.realmonini.network.dto.ReplyData;
+import com.example.realmonini.util.ApiErrorUtil;
 import com.example.realmonini.util.TokenManager;
 
 import java.util.List;
@@ -27,7 +29,22 @@ public class JournalCompleteFragment extends Fragment {
 
     private boolean timerDone = false;
     private boolean apiDone = false;
+    private boolean replyCalled = false;
     private Bundle replyArgs;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            replyCalled = savedInstanceState.getBoolean("replyCalled", false);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("replyCalled", replyCalled);
+    }
 
     @Nullable
     @Override
@@ -48,21 +65,29 @@ public class JournalCompleteFragment extends Fragment {
             navigateIfReady();
         }, 2000);
 
-        fetchReply(journalId);
+        if (!replyCalled) {
+            replyCalled = true;
+            fetchReply(journalId);
+        }
     }
 
     private void fetchReply(long journalId) {
         String token = "Bearer " + new TokenManager(requireContext()).getAccessToken();
 
         ApiClient.getJournalService()
-                .getReply(token, journalId)
+                .generateReply(token, journalId)
                 .enqueue(new Callback<ApiResponse<ReplyData>>() {
                     @Override
                     public void onResponse(Call<ApiResponse<ReplyData>> call,
                                            Response<ApiResponse<ReplyData>> response) {
                         if (!isAdded()) return;
                         replyArgs = new Bundle();
-                        if (response.isSuccessful() && response.body() != null) {
+                        if (!response.isSuccessful() || response.body() == null) {
+                            if (isAdded()) {
+                                Toast.makeText(requireContext(),
+                                        ApiErrorUtil.parseError(response), Toast.LENGTH_SHORT).show();
+                            }
+                        } else if (response.isSuccessful() && response.body() != null) {
                             ReplyData data = response.body().getData();
                             replyArgs.putString("reply", data.getReply());
                             replyArgs.putString("keywords", joinKeywords(data.getKeywords()));
